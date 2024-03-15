@@ -7,6 +7,7 @@ tagPivotRoute.get("/tagPivot", (req, res) => {
 });
 tagPivotRoute.post("/tagPivot/add", conn.createController);
 tagPivotRoute.get("/tagPivot/list", conn.getController);
+tagPivotRoute.get("/tagPivot/list/:id_tag", conn.getByTagController);
 tagPivotRoute.put("/tagPivot/update/:id", conn.updateController);
 tagPivotRoute.delete("/tagPivot/delete/:id", conn.deleteController);
 

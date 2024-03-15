@@ -1,16 +1,18 @@
 "use strict";
 const { Model } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
   class tag extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      // Define association here
+      tag.belongsToMany(models.wisata, {
+        through: "tagPivot",
+        foreignKey: "id_tag",
+        as: "wisatas",
+      });
     }
   }
+
   tag.init(
     {
       nama: DataTypes.STRING,
@@ -20,5 +22,6 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "tag",
     }
   );
+
   return tag;
 };

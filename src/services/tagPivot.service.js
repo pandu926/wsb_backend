@@ -1,4 +1,4 @@
-const { tagPivot } = require("../database/models");
+const { tagPivot, wisata, tag } = require("../database/models");
 
 const get = async (id) => {
   if (typeof id == "undefined") {
@@ -8,6 +8,19 @@ const get = async (id) => {
     where: { id },
   });
 };
+
+const getByTag = async (id_tag) => {
+  return tagPivot.findAll({
+    where: { id_tag },
+    include: [
+      {
+        model: wisata, // Model Wisata
+        as: "wisata",
+      },
+    ],
+  });
+};
+
 const create = async (data_input) => {
   return tagPivot.create(data_input);
 };
@@ -22,5 +35,5 @@ const remove = async (id) => {
   });
 };
 
-const service = { get, update, create, remove };
+const service = { get, getByTag, update, create, remove };
 module.exports = service;

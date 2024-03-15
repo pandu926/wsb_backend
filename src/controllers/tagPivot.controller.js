@@ -10,6 +10,13 @@ const getController = async (req, res) => {
   return res.status(200).json(response);
 };
 
+const getByTagController = async (req, res) => {
+  const { id_tag } = req.params;
+
+  const response = await service.getByTag(id_tag);
+  return res.status(200).json(response);
+};
+
 const createController = async (req, res) => {
   const data_input = req.body;
   const response = await service.create(data_input);
@@ -39,6 +46,7 @@ const deleteController = async (req, res) => {
 
 const conn = {
   getController,
+  getByTagController,
   createController,
   updateController,
   deleteController,

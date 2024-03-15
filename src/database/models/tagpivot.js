@@ -1,24 +1,28 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
   class tagPivot extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      // Define association here
+      tagPivot.belongsTo(models.wisata, {
+        foreignKey: "id_wisata",
+        as: "wisata",
+      });
+      tagPivot.belongsTo(models.tag, { foreignKey: "id_tag", as: "tag" });
     }
   }
-  tagPivot.init({
-    id_wisata: DataTypes.INTEGER,
-    id_tag: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'tagPivot',
-  });
+
+  tagPivot.init(
+    {
+      id_wisata: DataTypes.INTEGER,
+      id_tag: DataTypes.INTEGER,
+    },
+    {
+      sequelize,
+      modelName: "tagPivot",
+    }
+  );
+
   return tagPivot;
 };

@@ -1,8 +1,15 @@
-const { wisata } = require("../database/models");
+const { wisata, gambar } = require("../database/models");
 
 const get = async (id) => {
   if (typeof id == "undefined") {
-    return wisata.findAll();
+    return wisata.findAll({
+      include: [
+        {
+          model: gambar, // Model Wisata
+          as: "gambar",
+        },
+      ],
+    });
   }
   return wisata.findAll({
     where: { id },
