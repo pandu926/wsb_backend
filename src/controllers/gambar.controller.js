@@ -10,15 +10,6 @@ const getController = async (req, res) => {
   return res.status(200).json(response);
 };
 
-const createController = async (req, res) => {
-  const data_input = req.body;
-  const response = await service.create(data_input);
-  if (response) {
-    return res.status(200).json(response);
-  }
-  return res.status(400).json("failed");
-};
-
 const updateController = async (req, res) => {
   const { id } = req.params;
   const data_input = req.body;
