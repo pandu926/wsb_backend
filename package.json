@@ -23,7 +23,8 @@
         "path": "^0.12.7",
         "pg": "^8.10.0",
         "pg-hstore": "^2.3.4",
-        "sequelize": "^6.30.0"
+        "sequelize": "^6.30.0",
+        "sharp": "^0.33.2"
     },
     "devDependencies": {
         "sequelize-cli": "^6.6.0"

@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const port = 8000;
 const cors = require("cors");
+const path = require("path");
 
 //route
 const wisataRoute = require("./src/routes/wisata.route");
@@ -11,6 +12,7 @@ const tagRoute = require("./src/routes/tag.route");
 const tagPivotRoute = require("./src/routes/tagPivot.route");
 
 app.use(cors());
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded());
 

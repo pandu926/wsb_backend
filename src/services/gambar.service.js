@@ -8,8 +8,9 @@ const get = async (id) => {
     where: { id },
   });
 };
-const create = async (data_input) => {
-  return gambar.create(data_input);
+const create = async (filename, id_wisata) => {
+  const { gambar1, gambar2, gambar3, gambar4 } = filename;
+  return gambar.create({ id_wisata, gambar1, gambar2, gambar3, gambar4 });
 };
 const update = async (id, data_input) => {
   return gambar.update(data_input, {

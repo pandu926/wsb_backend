@@ -37,7 +37,29 @@ const deleteController = async (req, res) => {
   return res.status(400).json("failed");
 };
 
+const upload = async (req, res) => {
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send("No files were uploaded.");
+  }
+
+  const { id_wisata } = req.body;
+  console.log(id_wisata);
+
+  // Menampilkan nama-nama file yang diunggah
+  const filenames = {};
+  for (const field in req.files) {
+    filenames[field] = req.files[field][0].filename;
+  }
+
+  const response = await service.create(filenames, id_wisata);
+  if (response) {
+    return res.status(200).json(response);
+  }
+  return res.status(400).json("failed");
+};
+
 const conn = {
+  upload,
   getController,
   createController,
   updateController,
