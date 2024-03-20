@@ -8,6 +8,12 @@ const get = async (id) => {
     where: { id },
   });
 };
+const getDataSingleWisataId = async (id_wisata) => {
+  return gambar.findAll({
+    where: { id_wisata },
+  });
+};
+
 const create = async (filename, id_wisata) => {
   const { gambar1, gambar2, gambar3, gambar4 } = filename;
   return gambar.create({ id_wisata, gambar1, gambar2, gambar3, gambar4 });
@@ -24,5 +30,5 @@ const remove = async (id) => {
   });
 };
 
-const service = { get, update, create, remove };
+const service = { get, update, create, remove, getDataSingleWisataId };
 module.exports = service;

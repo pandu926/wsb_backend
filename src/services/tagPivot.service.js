@@ -27,6 +27,7 @@ const create = async (data_input) => {
 const update = async (id, data_input) => {
   return tagPivot.update(data_input, {
     where: { id },
+    returning: true,
   });
 };
 const remove = async (id) => {

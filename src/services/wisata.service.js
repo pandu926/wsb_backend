@@ -21,6 +21,7 @@ const create = async (data_input) => {
 const update = async (id, data_input) => {
   return wisata.update(data_input, {
     where: { id },
+    returning: true, // Menambahkan opsi returning untuk mengembalikan hasil setelah pembaruan
   });
 };
 const remove = async (id) => {

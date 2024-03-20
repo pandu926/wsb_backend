@@ -8,12 +8,19 @@ const get = async (id) => {
     where: { id },
   });
 };
+
+const getDataByName = async (nama) => {
+  return tag.findAll({
+    where: { nama },
+  });
+};
 const create = async (data_input) => {
   return tag.create(data_input);
 };
 const update = async (id, data_input) => {
   return tag.update(data_input, {
     where: { id },
+    returning: true,
   });
 };
 const remove = async (id) => {
@@ -22,5 +29,5 @@ const remove = async (id) => {
   });
 };
 
-const service = { get, update, create, remove };
+const service = { get, update, create, remove, getDataByName };
 module.exports = service;

@@ -13,7 +13,7 @@ const getController = async (req, res) => {
 const updateController = async (req, res) => {
   const { id } = req.params;
   const data_input = req.body;
-  const response = await service.update(id);
+  const response = await service.update(id, data_input);
   if (response) {
     return res.status(200).json(response);
   }
@@ -29,12 +29,15 @@ const deleteController = async (req, res) => {
 };
 
 const upload = async (req, res) => {
+  const { id_wisata } = req.body;
+  const checkIdWisata = await service.getDataSingleWisataId(id_wisata);
+  if (checkIdWisata.length != 0) {
+    return res.status(400).json("wisata telah memiliki gambar");
+  }
+
   if (!req.files || Object.keys(req.files).length === 0) {
     return res.status(400).send("No files were uploaded.");
   }
-
-  const { id_wisata } = req.body;
-  console.log(id_wisata);
 
   // Menampilkan nama-nama file yang diunggah
   const filenames = {};
@@ -52,7 +55,6 @@ const upload = async (req, res) => {
 const conn = {
   upload,
   getController,
-  createController,
   updateController,
   deleteController,
 };
