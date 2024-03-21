@@ -1,0 +1,29 @@
+name: Deploy to Alibaba VPS
+
+on:
+  push:
+    branches:
+      - main  # Ubah ke branch yang sesuai
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout kode
+      uses: actions/checkout@v2
+      
+    - name: Install dependensi
+      run: npm install  # Atau perintah instalasi yang sesuai dengan proyek Anda
+    
+    - name: Deploy ke VPS Alibaba
+      uses: appleboy/ssh-action@master
+      with:
+        host: 8.219.171.65
+        username: root
+        password: ${{ secrets.SSH_PASSWORD }}
+        script: |
+          cd /wsb  # Ubah ke direktori proyek Anda
+          git pull origin main  # Pull kode terbaru dari repositori GitHub
+          npm start # Atau perintah build yang sesuai dengan proyek Anda
+          pm2 restart app  # Atau perintah restart server aplikasi Anda
