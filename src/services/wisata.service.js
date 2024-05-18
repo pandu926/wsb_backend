@@ -13,6 +13,13 @@ const get = async (id) => {
   }
   return wisata.findAll({
     where: { id },
+   include: [
+        {
+          model: gambar, // Model Wisata
+          as: "gambar",
+        },
+      ],
+
   });
 };
 const create = async (data_input) => {

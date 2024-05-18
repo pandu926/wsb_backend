@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       tiket: DataTypes.INTEGER,
       alamat: DataTypes.STRING,
       link: DataTypes.STRING,
+      gambar_background : DataTypes.STRING,
     },
     {
       sequelize,

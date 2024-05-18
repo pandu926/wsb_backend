@@ -2,10 +2,24 @@ const { tagPivot, wisata, tag } = require("../database/models");
 
 const get = async (id) => {
   if (typeof id == "undefined") {
-    return tagPivot.findAll();
+    return tagPivot.findAll({
+	 include: [
+      {
+        model: wisata, // Model Wisata
+        as: "wisata",
+      },
+    ],
+
+});
   }
   return tagPivot.findAll({
-    where: { id },
+    where: {id},
+	include: [
+      {
+        model: wisata, // Model Wisata
+        as: "wisata",
+      },
+    ],
   });
 };
 
